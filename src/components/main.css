@@ -23,7 +23,7 @@ body {
   justify-content: center;
 }
 
-.form input[type="text"]{
+.form input[type="text"] {
   height: 40px;
   padding: 0 20px;
   font-size: 20px;
@@ -31,7 +31,7 @@ body {
   min-width: 80%;
 }
 
-.form button[type="submit"]{
+.form button[type="submit"] {
   border: none;
   height: 40px;
   width: 40px;
@@ -40,4 +40,40 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.tarefas {
+  margin-top: 30px;
+}
+
+.tarefas li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 600ms;
+}
+
+.tarefas li:hover {
+  background: #51c5de;
+}
+
+.tarefas li .edit {
+  margin-right: 15px;
+  color: #51c5de;
+}
+
+.tarefas li .delete {
+  margin-right: 15px;
+  color: #ca0d0d;
+}
+
+.tarefas li:hover .edit,
+.tarefas li:hover .delete {
+  color: #000;
+}
+
+.tarefas li .edit,
+.tarefas li .delete {
+  cursor: pointer;
+  transition: all 600ms;
 }
