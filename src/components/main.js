@@ -6,11 +6,12 @@ export default class main extends Component {
   state = {
     novaTarefa: '',
     tarefas: [],
+    index: -1,
   };
 
   handleSubimit = (e) => {
     e.preventDefault();
-    const { tarefas } = this.state;
+    const { tarefas, index } = this.state;
     let { novaTarefa } = this.state;
     novaTarefa = novaTarefa.trim();
 
@@ -18,9 +19,19 @@ export default class main extends Component {
 
     const novasTarefas = [...tarefas];
 
-    this.setState({
-      tarefas: [...novasTarefas, novaTarefa],
-    })
+    if (index === -1) {
+      this.setState({
+        tarefas: [...novasTarefas, novaTarefa],
+        novaTarefa: '',
+      });
+    } else {
+      novasTarefas[index] = novaTarefa;
+
+      this.setState({
+        tarefas: [...novasTarefas],
+        index: -1,
+      });
+    }
   }
 
   handleChange = (e) => {
@@ -30,7 +41,12 @@ export default class main extends Component {
   }
 
   handleEdit = (e, index) => {
-    console.log(index);
+    const { tarefas } = this.state;
+
+    this.setState({
+      index,
+      novaTarefa: tarefas[index],
+    });
   }
 
   handleDelete = (e, index) => {
@@ -40,7 +56,7 @@ export default class main extends Component {
 
     this.setState({
       tarefas: [...novasTarefas],
-    })
+    });
   }
 
   render() {
@@ -67,10 +83,10 @@ export default class main extends Component {
               {tarefa}
               <span>
                 <FaEdit
-                  onClick={(e) => this.handleEdit(e,index)}
+                  onClick={(e) => this.handleEdit(e, index)}
                   className="edit" />
                 <FaTrash
-                  onClick={(e) => this.handleDelete(e,index)}
+                  onClick={(e) => this.handleDelete(e, index)}
                   className="delete" />
               </span>
             </li>
