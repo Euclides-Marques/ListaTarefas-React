@@ -5,12 +5,23 @@ import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 export default class main extends Component {
   state = {
     novaTarefa: '',
-    tarefas: [
-        'Fazer Café',
-        'Beber Água',
-        'Estudar',
-      ],
+    tarefas: [],
   };
+
+  handleSubimit = (e) => {
+    e.preventDefault();
+    const { tarefas } = this.state;
+    let { novaTarefa } = this.state;
+    novaTarefa = novaTarefa.trim();
+
+    if (tarefas.indexOf(novaTarefa) != -1) return
+
+    const novasTarefas = [...tarefas];
+
+    this.setState({
+      tarefas: [...novasTarefas, novaTarefa],
+    })
+  }
 
   handleChange = (e) => {
     this.setState({
@@ -25,7 +36,7 @@ export default class main extends Component {
       <div className="main">
         <h1>Lista de Tarefas</h1>
 
-        <form className="form" action="#">
+        <form onSubmit={this.handleSubimit} className="form" action="#">
           <input
             onChange={this.handleChange}
             type="text"
