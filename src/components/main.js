@@ -9,13 +9,29 @@ export default class main extends Component {
     index: -1,
   };
 
+  componentDidMount() {
+    const tarefas = JSON.parse(localStorage.getItem('tarefas'));
+
+    if(!tarefas) return;
+
+    this.setState([ tarefas]);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { tarefas } = this.state;
+
+    if(tarefas === prevState.tarefa) return;
+
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  }
+
   handleSubimit = (e) => {
     e.preventDefault();
     const { tarefas, index } = this.state;
     let { novaTarefa } = this.state;
     novaTarefa = novaTarefa.trim();
 
-    if (tarefas.indexOf(novaTarefa) != -1) return
+    if (tarefas.indexOf(novaTarefa) != -1) return;
 
     const novasTarefas = [...tarefas];
 
