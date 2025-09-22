@@ -14,7 +14,7 @@ export default class main extends Component {
 
     if(!tarefas) return;
 
-    this.setState([ tarefas]);
+    this.setState({ tarefas });
   }
 
   componentDidUpdate(prevProps, prevState) {
