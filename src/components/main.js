@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import './main.css';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-
 import Form from './Form';
+import Tarefas from './Tarefas';
+import './main.css';
 
 export default class main extends Component {
   state = {
@@ -89,21 +88,11 @@ export default class main extends Component {
           novaTarefa = {novaTarefa}
         />
 
-        <ul className="tarefas">
-          {tarefas.map((tarefa, index) => (
-            <li key={tarefa}>
-              {tarefa}
-              <span>
-                <FaEdit
-                  onClick={(e) => this.handleEdit(e, index)}
-                  className="edit" />
-                <FaTrash
-                  onClick={(e) => this.handleDelete(e, index)}
-                  className="delete" />
-              </span>
-            </li>
-          ))}
-        </ul>
+        <Tarefas
+          tarefas = {tarefas}
+          handleEdit = {this.handleEdit}
+          handleDelete = {this.handleDelete}
+        />
       </div>
     );
   }
